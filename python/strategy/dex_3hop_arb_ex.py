@@ -172,14 +172,14 @@ def main():
     A sample MEV code of triangular arbitrage on Sushiswap V2 Polygon
     """
     logger.info('Starting strategy')
-    
+    logger.info(WSS_URL)
     event_queue = aioprocessing.AioQueue()
     
     new_blocks_stream = reconnecting_websocket_loop(
         partial(stream_new_blocks, WSS_URL, event_queue, False, 'polygon'),
         tag='new_blocks_stream'
     )
-    
+    logger.info('here')
     event_handler_loop = event_handler(event_queue)
     
     loop = asyncio.get_event_loop()
@@ -188,6 +188,6 @@ def main():
         event_handler_loop,
     ]))
     
-
+    logger.info('here2')
 if __name__ == '__main__':
     main()
